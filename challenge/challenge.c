@@ -1,9 +1,11 @@
 #include<stdio.h>
-void duplicate(int *, int *, int *, int *, int *, int *, int *, char s[][20], char hash[100]);
+void display( char s[][30], int *, int *, int *);
+void duplicate( int *, int *, int *, int *, char s[][30] );
+void displayone( char s[][30], int ,int *);
 int main(){
 	char *text = "Red teaming is thrilling. Red teaming means planning, evading and striking! Red, red, red...";
 	char hash[100];
-	char s[20][20];
+	char s[100][30];
 	int i=0,j=0,n=0,k=0,p=0,a=0,b=0;
 	while(*text != '\0') {
 		if(*text==',' || *text=='.' || *text=='!'){
@@ -21,7 +23,6 @@ int main(){
 			if(hash[j]==m)
 				hash[j]=m+32;
 		}
-//		printf("%c",hash[j]);
 	}
 	j=0;
 	for(a=0;j<i;a++){
@@ -35,64 +36,46 @@ int main(){
 			j++;
 		}
 	}
-//	printf("\n");
-//	for(i=0;i<a;i++){
-//		printf("\n");
-//		for(j=0;j<20;j++){
-//			if(s[i][j]=='\0')
-//				break;
-//			else
-//				printf("%c",s[i][j]);
-//		}
-//	}
-//	printf("\n");
-	duplicate(&i,&j,&n,&p,&k,&b,&a,s,hash);
+//	display(s,&a,&i,&j);
+	duplicate(&a,&i,&j,&p,s);
 }
-void duplicate(int *i, int *j, int *n, int *p, int *k, int *b, int *a,char s[][20], char hash[100]){
-	int g=0,m=0,l=0,end=0,r=0,icounter,yes=0,dups=0;
+
+void display(char s[][30], int *a, int *i, int *j){
 	for(*i=0;*i<*a;(*i)++){
-		icounter=*i;
-		*p=*i+1;
-//		*b=0;
-		printf("%d.",*p);
-		if(*i==(*a/2)-1){
-			printf("%s\n",s[*i]);
-			continue;
+		for(*j=0;s[*i][*j]!='\0';(*j)++){
+			printf("%c",s[*i][*j]);
 		}
-		for(*j=0;*j<20;(*j)++){
-			if(s[*i][*j]=='\0'){
-				if(end==1 && l==m){
-					printf(" <-- Found\n");
-//					if(icounter==*i)
-//						yes++;
-					break;
-				}
-				else{
-					yes=-1;
-					printf("\n");
-					break;
-				}
-			}
-			else{
-				l=0;
-				for(g=*a;g>0;g--){
-					for(m=0;m<20;m++){
-						if( s[g][m+1]!='\0' && s[*i][m+1]!='\0'){
-							if(s[g][m]==s[*i][m]){
-								end=1;
-								l++;
-								break;
-							}
-							else{
-								l=0;
-							}
-						}
-						else
-							break;
-					}
-				}
-				printf("%c",s[*i][*j]);
-			}
-		}
+		printf("\n");
 	}
+}
+
+void duplicate( int *a, int *i, int *j, int *p, char s[][30] ){
+	int check=0;
+	*i=0;*j=0;*p=0;
+	while(*i!=*a){
+		check=0;
+		printf("%2d. ",*i+1);
+		for(*p=*a;*p>-1;(*p)--){
+			for(*j=0;;(*j)++){
+				if( (s[*i][*j]=='\0' && s[*p][*j]=='\0') && *i!=*j ){
+					check+=1;
+					break;
+				}
+				if(s[*i][*j] != s[*p][*j] ){
+					break;
+				}
+			}
+		}
+		if(check>=1){
+			displayone(s,*i,&check);
+		}
+		printf("\n");
+		(*i)++;
+	}
+}
+
+void displayone( char s[][30], int i, int *check){
+	int j=0;
+	printf("%-11s",s[i]);
+	printf(" <-- %d times occurred",*check);
 }
