@@ -61,5 +61,5 @@ Cybersecurity & Systems Programmer
 
 ---
 
-_“Respect the struct. Master the class.” — JGM_
+_I have no idea how this works, but it freaking works. — JGM_
 
