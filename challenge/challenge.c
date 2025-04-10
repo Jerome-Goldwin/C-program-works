@@ -1,7 +1,6 @@
 #include<stdio.h>
-void display( char s[][30], int *, int *, int *);
 void duplicate( int *, int *, int *, int *, char s[][30] );
-void displayone( char s[][30], int ,int *);
+void display( char s[][30], int ,int *);
 int main(){
 	char *text = "Red teaming is thrilling. Red teaming means planning, evading and striking! Red, red, red...";
 	char hash[100];
@@ -36,17 +35,7 @@ int main(){
 			j++;
 		}
 	}
-//	display(s,&a,&i,&j);
 	duplicate(&a,&i,&j,&p,s);
-}
-
-void display(char s[][30], int *a, int *i, int *j){
-	for(*i=0;*i<*a;(*i)++){
-		for(*j=0;s[*i][*j]!='\0';(*j)++){
-			printf("%c",s[*i][*j]);
-		}
-		printf("\n");
-	}
 }
 
 void duplicate( int *a, int *i, int *j, int *p, char s[][30] ){
@@ -67,14 +56,14 @@ void duplicate( int *a, int *i, int *j, int *p, char s[][30] ){
 			}
 		}
 		if(check>=1){
-			displayone(s,*i,&check);
+			display(s,*i,&check);
 		}
 		printf("\n");
 		(*i)++;
 	}
 }
 
-void displayone( char s[][30], int i, int *check){
+void display( char s[][30], int i, int *check){
 	int j=0;
 	printf("%-11s",s[i]);
 	printf(" <-- %d times occurred",*check);
