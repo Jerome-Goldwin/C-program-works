@@ -48,7 +48,7 @@ gcc -o word_collector word_collector.c
 
 - **Not open-source.**
 - **Do not** reuse, modify, redistribute, or rehost any part of the code or project.
-- Refer to [LICENSE.txt](./LICENSE.txt) for full legal terms.
+- Refer to [LICENSE.md](./LICENSE.md) for full legal terms.
 
 ---
 
